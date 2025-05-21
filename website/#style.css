@@ -1,0 +1,15 @@
+/* 전체 배경색 설정 */
+body {
+    margin: 0;
+    background-color: black;
+  }
+  
+  /* 헤드라인 스타일 */
+  .headline {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 48px;
+  }
