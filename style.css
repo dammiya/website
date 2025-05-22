@@ -14,19 +14,27 @@ body {
 /* ────────────────────────────────────
    ① 배경 비디오 (맨 뒤)
 ──────────────────────────────────── */
+/* style.css 맨 아래에 추가 or 기존 .hero 덮어쓰기 */
+/* ───────────────────────────────
+   배경 비디오(맨 뒤) 수정본
+──────────────────────────────── */
 .hero {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100vh;
-  overflow: hidden;
-  z-index: -1;                /* 배경으로 */
+  position: fixed;
+  top:    0;
+  left:   0;      /* ← 여기 0으로 */
+  width: 100%;    /* ← 화면 전체 너비 */
+  height:100vh;
+  overflow:hidden;
+  z-index:-1;
 }
 .bg-video {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top:    0;
+  left:   0;      /* ← 여기 0으로 */
+  width:100%;
+  height:100%;
   object-fit: cover;
-  z-index: -1;
+  z-index:-1;
 }
 
 /* ────────────────────────────────────
@@ -105,8 +113,8 @@ body {
 /* 프로필 사진 절대 위치로 바꿔서 자유롭게 이동 */
 .profile-photo {
   position: absolute;   /* ← 변경 */
-  top: 200px;            /* ← 이 숫자를 조절해서 세로 위치 수정 */
-  left: 1000px;          /* ← 이 숫자를 조절해서 가로 위치 수정 */
+  top: 300px;            /* ← 이 숫자를 조절해서 세로 위치 수정 */
+  left: 1200px;          /* ← 이 숫자를 조절해서 가로 위치 수정 */
   width: 400px;         /* ← 원하는 너비로 조절 */
   height: auto;
   z-index: 1;           /* 배경 위에 있도록 */
