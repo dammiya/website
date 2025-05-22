@@ -1,120 +1,121 @@
+/* ────────────────────────────────────
+   공통
+──────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
-  background-color: black;
-  height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding-left: 120px;
-  padding-top: 400px;
+  background-color: black;    /* 배경은 검은색 */
   font-family: 'Noto Sans', sans-serif;
+  position: relative;         /* hero 절대위치를 위해 */
 }
 
-/* 컨테이너를 세로 정렬 flex 로 전환, gap 으로 요소 간격 조절 */
+/* ────────────────────────────────────
+   ① 배경 비디오 (맨 뒤)
+──────────────────────────────────── */
+.hero {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  overflow: hidden;
+  z-index: -1;                /* 배경으로 */
+}
+.bg-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* ────────────────────────────────────
+   ② 기존 레이아웃 (손대지 않음)
+──────────────────────────────────── */
 .container {
+  /* flex 레이아웃, 대신 위치·간격만 지정 */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 3px;            /* subtitle—headline 사이 10px 띄우기 */
+  padding: 400px 0 0 120px;    /* 원래 주셨던 위치 */
+  gap: 3px;
+  z-index: 1;                 /* 비디오 위로 */
 }
-
-/* subtitle, headline 불필요한 기본 여백 제거 */
 .subtitle,
 .headline {
   margin: 0;
   padding: 0;
   line-height: 1.2;
 }
-
-/* DAMMI (subtitle) 스타일 */
 .subtitle {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 600;
   font-size: 32px;
   color: rgb(255, 70, 162);
   margin-left: 3px;
-  /* margin-bottom 대신 gap 으로 간격 제어하므로 따로 여백 주지 않아도 됩니다 */
 }
-
-/* PORTFOLIO (headline) 스타일 */
 .headline {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 900;
   font-size: 80px;
   color: white;
-  /* margin-top: 0 이 기본이므로 별도 지정 필요 없음 */
 }
-
-/* 본문 텍스트 스타일 */
 .description {
   white-space: pre-wrap;
-  font-family: 'Noto Sans KR', sans-serif; /* 한글용 Noto Sans KR */
-  font-weight: 200;        /* 본문은 일반 굵기 */
-  font-size: 15px;         /* 원하는 크기로 조절 (예: 18px~24px) */
-  line-height: 1.5;        /* 읽기 좋은 줄 간격 */
-  color: white;            /* 배경이 검정이니 흰색 */
-  margin: 0px 0 0 3px;    /* 위쪽 12px 여백, 좌측은 subtitle과 일치시켜 3px */
-  max-width: 700px;        /* 가독성을 위해 너비 제한 */
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 200;
+  font-size: 15px;
+  line-height: 1.5;
+  color: white;
+  margin: 0 0 0 3px;
+  max-width: 700px;
 }
-
-/* 필요하다면 반응형 대응 */
-@media (max-width: 600px) {
-  .description {
-    font-size: 16px;
-    max-width: 90vw;
-  }
-}
-.profile-photo {
-  width: 400px;
-  height: auto;
-
-  /* auto 대신 고정 픽셀값을 넣어보세요. 
-     예: 텍스트 오른쪽으로 500px 떨어뜨리려면 */
-  margin-left: 300px;   
-  margin-top: -200px;     /* 필요하면 위쪽 간격도 직접 조절 */
-}
-}
-
-.subtitle {
-  /* DAMMI → PORTFOLIO 사이 (필요 없으면 0으로) */
-  margin-bottom: 0px;
-}
-
-.headline {
-  /* PORTFOLIO → 본문 사이 여백을 4px로 */
-  margin-bottom: 0.1px;
-}
-
-.description {
-  /* description 위쪽 여백 완전 제거 */
-  margin-top: 0;
-}
-
 .caption {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  column-gap: 30px;  /* 레이블↔값, 값↔레이블 사이 */
-  row-gap: 10px;      /* 위아래 줄 간격 (다른 간격과 맞춰 3px) */
-  margin: 3px 0 0 3px; /* 다른 텍스트 들여쓰기와 동일하게 3px */
+  column-gap: 30px;
+  row-gap: 10px;
+  margin: 3px 0 0 3px;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
-
 .caption .label {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
   font-size: 20px;
   color: rgb(255, 70, 162);
 }
-
-/* 1) unvisited/visited 링크를 흰색으로 고정 */
 .caption .value a:link,
 .caption .value a:visited {
   color: white;
   text-decoration: none;
 }
-
-/* 2) 클릭 중(active)일 때만 하늘색으로 */
 .caption .value a:active {
   color: skyblue;
 }
+
+/* 컨테이너가 기준점이 되도록 */
+.container {
+  position: relative;
+  /* 기존 padding, flex 등은 그대로 유지 */
+}
+
+/* 프로필 사진 절대 위치로 바꿔서 자유롭게 이동 */
+.profile-photo {
+  position: absolute;   /* ← 변경 */
+  top: 200px;            /* ← 이 숫자를 조절해서 세로 위치 수정 */
+  left: 1000px;          /* ← 이 숫자를 조절해서 가로 위치 수정 */
+  width: 400px;         /* ← 원하는 너비로 조절 */
+  height: auto;
+  z-index: 1;           /* 배경 위에 있도록 */
+}
+
+/* (필요 시) 반응형 */
+@media (max-width: 600px) {
+  .description {
+    font-size: 16px;
+    max-width: 90vw;
+  }
 }
