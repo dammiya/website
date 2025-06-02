@@ -6,49 +6,118 @@
 }
 body {
   margin: 0;
-  background-color: black;    /* 배경은 검은색 */
+  background-color: black;
   font-family: 'Noto Sans', sans-serif;
-  position: relative;         /* hero 절대위치를 위해 */
+  position: relative;
 }
 
 /* ────────────────────────────────────
    ① 배경 비디오 (맨 뒤)
 ──────────────────────────────────── */
-/* style.css 맨 아래에 추가 or 기존 .hero 덮어쓰기 */
-/* ───────────────────────────────
-   배경 비디오(맨 뒤) 수정본
-──────────────────────────────── */
 .hero {
   position: fixed;
-  top:    0;
-  left:   0;      /* ← 여기 0으로 */
-  width: 100%;    /* ← 화면 전체 너비 */
-  height:100vh;
-  overflow:hidden;
-  z-index:-1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
 }
 .bg-video {
   position: absolute;
-  top:    0;
-  left:   0;      /* ← 여기 0으로 */
-  width:100%;
-  height:100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  z-index:-1;
+  z-index: -1;
+}
+
+#audio-visualizer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 3px;
+  z-index: 10;
+}
+.bar {
+  width: 4px;
+  height: 10px;
+  background: white;
+  transition: height 0.1s ease;
 }
 
 /* ────────────────────────────────────
-   ② 기존 레이아웃 (손대지 않음)
+   INTRO 전환용 스타일 추가
+──────────────────────────────────── */
+.intro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: opacity 0.5s;
+  z-index: 2;
+}
+.character {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: auto;
+  transition: all 1s ease;
+  z-index: 2;
+}
+.enter-button {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: transparent;
+  color: #ff007f;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+.enter-button:hover {
+  box-shadow: 0 0 25px rgba(255, 0, 127, 0.7);
+}
+.enter-button:active {
+  background-color: #ff007f;
+  color: white;
+  box-shadow: 0 0 25px rgba(255, 0, 127, 0.9);
+}
+
+/* ────────────────────────────────────
+   ② 기존 포트폴리오 레이아웃
 ──────────────────────────────────── */
 .container {
-  /* flex 레이아웃, 대신 위치·간격만 지정 */
   position: relative;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: flex-start;
-  padding: 400px 0 0 120px;    /* 원래 주셨던 위치 */
+  padding: 400px 0 0 120px;
   gap: 3px;
-  z-index: 1;                 /* 비디오 위로 */
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s;
 }
 .subtitle,
 .headline {
@@ -78,6 +147,7 @@ body {
   color: white;
   margin: 0 0 0 3px;
   max-width: 700px;
+  text-align: start;
 }
 .caption {
   display: grid;
@@ -88,6 +158,7 @@ body {
   align-items: center;
   position: relative;
   z-index: 1;
+  text-align: start;
 }
 .caption .label {
   font-family: 'Noto Sans KR', sans-serif;
@@ -103,61 +174,53 @@ body {
 .caption .value a:active {
   color: skyblue;
 }
-
-/* 컨테이너가 기준점이 되도록 */
-.container {
-  position: relative;
-  /* 기존 padding, flex 등은 그대로 유지 */
-}
-
-/* 프로필 사진 절대 위치로 바꿔서 자유롭게 이동 */
 .profile-photo {
-  position: absolute;   /* ← 변경 */
-  top: 300px;            /* ← 이 숫자를 조절해서 세로 위치 수정 */
-  left: 1200px;          /* ← 이 숫자를 조절해서 가로 위치 수정 */
-  width: 400px;         /* ← 원하는 너비로 조절 */
+  position: absolute;
+  top: 20%;
+  left: 1000px;
+  width: 400px;
   height: auto;
-  z-index: 1;           /* 배경 위에 있도록 */
+  z-index: 1;
 }
 
-/* (필요 시) 반응형 */
 @media (max-width: 600px) {
+  .character {
+    width: 200px;
+  }
+  .enter-button {
+    width: 70px;
+    height: 70px;
+    font-size: 14px;
+  }
   .description {
     font-size: 16px;
     max-width: 90vw;
   }
 }
 
-
 /* ────────────────
    about.html 전용 스타일
 ──────────────── */
-
-body {
-  margin: 0;
+body.about {
   padding: 60px 20px;
   background-color: #0d0d0d;
   color: white;
-  font-family: 'Noto Sans KR', sans-serif;
   text-align: center;
 }
 
 .h2-wrapper {
   margin-top: 60px;
 }
-
 h2 {
   color: hotpink;
   font-size: 20px;
   margin-bottom: 10px;
 }
-
 h1 {
   font-size: 28px;
   font-weight: 900;
   margin-bottom: 20px;
 }
-
 .desc {
   font-size: 15px;
   color: #ccc;
@@ -165,7 +228,6 @@ h1 {
   margin: 0 auto 40px;
   line-height: 1.6;
 }
-
 .keywords {
   display: flex;
   flex-wrap: wrap;
@@ -173,7 +235,6 @@ h1 {
   gap: 10px;
   margin-bottom: 50px;
 }
-
 .keywords span {
   background-color: #2b2b2b;
   padding: 10px 20px;
@@ -183,11 +244,9 @@ h1 {
   cursor: pointer;
   transition: color 0.3s ease;
 }
-
 .keywords span.clicked {
   color: skyblue;
 }
-
 .insight-reasons {
   display: flex;
   justify-content: center;
@@ -195,7 +254,6 @@ h1 {
   flex-wrap: wrap;
   margin-top: 60px;
 }
-
 .circle {
   width: 160px;
   height: 160px;
@@ -209,7 +267,6 @@ h1 {
   text-align: center;
   font-size: 16px;
 }
-
 .popup {
   display: none;
   position: fixed;
@@ -225,31 +282,28 @@ h1 {
   width: 300px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
-
 .popup.active {
   display: block;
 }
-
 .popup-overlay {
   display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.7);
   z-index: 1000;
 }
-
 .popup-overlay.active {
   display: block;
 }
 
-/* 반응형 대응 */
 @media (max-width: 600px) {
   .desc {
     font-size: 16px;
     max-width: 90vw;
   }
-
   .circle {
     width: 120px;
     height: 120px;
