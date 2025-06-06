@@ -1,95 +1,69 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>Research Insight</title>
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+KR:wght@100;300;500;700;900&display=swap"
-    rel="stylesheet"
-  />
-  <!-- 외부 스타일시트 연결 -->
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>김담미 프로필카드</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <div class="h2-wrapper">
-    <h2>nice to meet you</h2>
-    <h1>담미의 <strong>모든 것이 궁금해요!</strong></h1>
+  <div class="center-box">
+    <div class="profile-popup">
+      <!-- 프로필 정보는 네가 쓴 그대로 사용! -->
+      <div class="profile-row">
+        <div class="profile-imgbox">
+          <div class="bg-shape"></div>
+          <img class="profile-img" src="dammi.jpg" alt="김담미 프로필">
+        </div>
+        <div class="profile-main">
+          <h2 class="profile-name">
+            김담미 <span class="en">Kim dam mi</span>
+          </h2>
+          <div class="profile-meta">
+            <strong>생년월일:</strong> 2004년 02월 02일<br>
+            <strong>MBTI:</strong> ENFJ<br>
+            <strong>사이트:</strong>
+            <a href="https://your_naver_blog_url" target="_blank" title="네이버 블로그">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Naver_Blog_Logo.png" width="20" style="vertical-align:middle; border-radius:5px; background:white;">
+            </a>
+            <a href="https://instagram.com" target="_blank" title="인스타그램">
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" width="18" style="vertical-align:middle;filter:invert(1)"/>
+            </a>
+            <a href="https://youtube.com" target="_blank" title="유튜브">
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" width="18" style="vertical-align:middle;filter:invert(1)"/>
+            </a>
+            <br>
+            <strong style="color:#ff5eae;">경력</strong>
+            <ul style="margin: 6px 0 12px 28px; padding: 0; color: #ccc;">
+              <li style="margin-bottom: 2px;">MCC 수습기자</li>
+              <li style="margin-bottom: 2px;">별무리 홍보기자 27기</li>
+              <li>12대 학생회 문화부장</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="tabs"></div>
+    </div>
+    <div class="gallery-section">
+      <div class="gallery-title">이미지</div>
+      <div class="gallery-slider-center">
+        <button class="arrow-btn" id="prevBtn">&#8592;</button>
+        <div class="slider-viewport">
+          <div class="slider-track" id="sliderTrack">
+            <div class="thumb-item"><img src="1.JPG"><div class="thumb-title">사진1</div></div>
+            <div class="thumb-item"><img src="2.jpg"><div class="thumb-title">사진2</div></div>
+            <div class="thumb-item"><img src="3.JPG"><div class="thumb-title">사진3</div></div>
+            <div class="thumb-item"><img src="4.JPG"><div class="thumb-title">사진4</div></div>
+            <div class="thumb-item"><img src="5.JPG"><div class="thumb-title">사진5</div></div>
+            <div class="thumb-item"><img src="6.HEIC"><div class="thumb-title">사진6</div></div>
+            <div class="thumb-item"><img src="7.HEIC"><div class="thumb-title">사진7</div></div>
+            <div class="thumb-item"><img src="8.HEIC"><div class="thumb-title">사진8</div></div>
+          </div>
+        </div>
+        <button class="arrow-btn" id="nextBtn">&#8594;</button>
+      </div>
+    </div>
   </div>
-
-  <p class="desc">
-    밝은 에너지와 긍정의 기운으로 최선을 다하는 사람으로 "죽기야 하겠어?"라는 마인드로 살고 있습니다.<br />
-    아래를 클릭하여 <strong>더 많은 정보를</strong>얻어주세요!
-  </p>
-
-  <div class="keywords">
-    <span data-popup="popup1">학력</span>
-    <span data-popup="popup2">관심 분야 / 강점</span>
-    <span data-popup="popup3">경험과 활동</span>
-    <span data-popup="popup4">스타일</span>
-    <span data-popup="popup5">자격증</span>
-    <span data-popup="popup6">하고 싶은 말</span>
-  </div>
-
-  <div style="margin-top: 20px; font-weight: 300; font-size: 14px;">
-    # 행운 부적 # 분홍색 # 꼬꼬마 # 높은 텐션
-  </div>
-
-  <div class="insight-reasons">
-    <div class="circle">다양한 경험이<br>많은 사람</div>
-    <div class="circle">드라마를<br>좋아하는 사람</div>
-    <div class="circle">노래 부르는 것을<br>좋아하는 사람</div>
-    <div class="circle">성취감에<br>사는 사람</div>
-  </div>
-
-  <!-- 팝업창들 -->
-  <div class="popup-overlay" id="popupOverlay"></div>
-
-  <div class="popup" id="popup1">🎓 경성대학교 미디어콘텐츠학과 및 시각디자인학과 복수전공</div>
-  <div class="popup" id="popup2">🎯 디자인 및 마케팅 분야</div>
-  <div class="popup" id="popup3">
-    ・학내 언론사 MCC 기자<br>
-    ・학과 미디어위크 기획단 기획부<br>
-    ・미디어콘텐츠학과 12대 학생회 문화부장<br>
-    ・ 학내 홍보대사 '별무리' 홍보기자 27기
-  </div>
-  <div class="popup" id="popup4">💡 밝고 적극적인 커뮤니케이션 스타일</div>
-  <div class="popup" id="popup5">
-    ・GTQ 포토샵 1급<br>
-    ・콘텐츠기획관리사 1급<br>
-    ・브랜드기획자 1급<br>
-    ・콘텐츠IP비즈니스전문가<br>
-    ・데이터분석 전문 관리사 1급<br>
-    ・콘텐츠 마케터 1급<br>
-    ・드론 무인동력비행장치 4종 등
-  </div>
-  <div class="popup" id="popup6">💬 나의 콘텐츠가 사람들에게 영감을 줄 수 있기를!</div>
-
-  <!-- JavaScript: 팝업 및 색상 효과 -->
-  <script>
-    const buttons = document.querySelectorAll('.keywords span');
-    const popups = document.querySelectorAll('.popup');
-    const overlay = document.getElementById('popupOverlay');
-
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.classList.add('clicked');
-        setTimeout(() => btn.classList.remove('clicked'), 300);
-
-        popups.forEach(p => p.classList.remove('active'));
-        overlay.classList.add('active');
-
-        const popupId = btn.getAttribute('data-popup');
-        document.getElementById(popupId).classList.add('active');
-      });
-    });
-
-    overlay.addEventListener('click', () => {
-      overlay.classList.remove('active');
-      popups.forEach(p => p.classList.remove('active'));
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>

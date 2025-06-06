@@ -65,3 +65,40 @@ audioElement.addEventListener("play", () => {
   audioCtx.resume();
   animate();
 });
+
+// script.js
+const track = document.getElementById('sliderTrack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const thumbs = document.querySelectorAll('.thumb-item');
+
+const perPage = 4;           // 한 번에 보여줄 썸네일 개수
+const total = thumbs.length;
+let page = 0;                // 현재 페이지 (0: 첫 묶음, 1: 두번째 묶음, ...)
+
+function updateSlider() {
+  const gap = 24;            // .slider-track의 gap 값!
+  const thumbWidth = 180;    // .thumb-item의 width!
+  const move = page * (perPage * (thumbWidth + gap));
+  track.style.transform = `translateX(-${move}px)`;
+
+  // 버튼 활성/비활성 상태
+  prevBtn.disabled = (page === 0);
+  nextBtn.disabled = (page + 1) * perPage >= total;
+}
+
+nextBtn.addEventListener('click', () => {
+  if ((page + 1) * perPage < total) {
+    page += 1;
+    updateSlider();
+  }
+});
+
+prevBtn.addEventListener('click', () => {
+  if (page > 0) {
+    page -= 1;
+    updateSlider();
+  }
+});
+
+updateSlider();
