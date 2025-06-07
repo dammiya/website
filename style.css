@@ -492,10 +492,14 @@ body {
   display: flex;
   gap: 60px;
   margin-top: 20px;
+
+  /* 🔥 wrap 방지 */
+  flex-wrap: nowrap;
 }
 
 .column {
-  flex: 1;
+  flex: none;           /* 자동 너비 비율 제거 */
+  width: 320px;         /* ✅ 적절한 고정 너비 지정 (조정 가능) */
 }
 
 .column strong {
