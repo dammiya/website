@@ -337,10 +337,11 @@ body {
   margin: 0 10px;
 }
 .arrow-btn:disabled {
-  opacity: 0.35;
+  opacity: 0.3;
   cursor: not-allowed;
+  background: #444;
+  pointer-events: none;
 }
-
 .slider-viewport {
   overflow: hidden;
   width: 820px;     /* 180*4 + 24*3 */
@@ -462,7 +463,10 @@ body {
   height: 210px;
 }
 .slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
   gap: 34px;
+  width: fit-content; /* ⭐ 핵심! 트랙의 가로 길이를 내용만큼으로 */
 }
 .thumb-item {
   width: 240px;

@@ -66,39 +66,64 @@ audioElement.addEventListener("play", () => {
   animate();
 });
 
-// script.js
-const track = document.getElementById('sliderTrack');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const thumbs = document.querySelectorAll('.thumb-item');
+// ✅ 4. 슬라이드 갤러리
+document.addEventListener('DOMContentLoaded', () => {
+  console.log("JS 연결됨");
 
-const perPage = 4;           // 한 번에 보여줄 썸네일 개수
-const total = thumbs.length;
-let page = 0;                // 현재 페이지 (0: 첫 묶음, 1: 두번째 묶음, ...)
+  const imageData = [
+    { src: '1.jpg', title: '사진1' },
+    { src: '2.jpg', title: '사진2' },
+    { src: '3.jpg', title: '사진3' },
+    { src: '4.jpg', title: '사진4' },
+    { src: '5.jpg', title: '사진5' },
+    { src: '6.jpg', title: '사진6' },
+    { src: '7.jpg', title: '사진7' },
+    { src: '8.jpg', title: '사진8' }
+  ];
 
-function updateSlider() {
-  const gap = 24;            // .slider-track의 gap 값!
-  const thumbWidth = 180;    // .thumb-item의 width!
-  const move = page * (perPage * (thumbWidth + gap));
-  track.style.transform = `translateX(-${move}px)`;
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(imageData.length / itemsPerPage);
+  let currentPage = 0;
 
-  // 버튼 활성/비활성 상태
-  prevBtn.disabled = (page === 0);
-  nextBtn.disabled = (page + 1) * perPage >= total;
-}
+  const track = document.getElementById('sliderTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
 
-nextBtn.addEventListener('click', () => {
-  if ((page + 1) * perPage < total) {
-    page += 1;
-    updateSlider();
+  function renderSliderPage(page) {
+    if (!track) return;
+
+    track.innerHTML = ''; // 이전 것들 제거
+    const start = page * itemsPerPage;
+    const items = imageData.slice(start, start + itemsPerPage);
+
+    items.forEach(data => {
+      const item = document.createElement('div');
+      item.className = 'thumb-item';
+      item.innerHTML = `
+        <img src="${data.src}" alt="${data.title}">
+        <div class="thumb-title">${data.title}</div>
+      `;
+      track.appendChild(item);
+    });
+
+    // 버튼 비활성화 상태 업데이트
+    prevBtn.disabled = currentPage === 0;
+    nextBtn.disabled = currentPage === totalPages - 1;
   }
-});
 
-prevBtn.addEventListener('click', () => {
-  if (page > 0) {
-    page -= 1;
-    updateSlider();
-  }
-});
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 0) {
+      currentPage--;
+      renderSliderPage(currentPage);
+    }
+  });
 
-updateSlider();
+  nextBtn.addEventListener('click', () => {
+    if (currentPage < totalPages - 1) {
+      currentPage++;
+      renderSliderPage(currentPage);
+    }
+  });
+
+  renderSliderPage(currentPage); // 처음 실행
+});
