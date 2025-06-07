@@ -201,6 +201,9 @@ body {
 /* ────────────────
    about.html 전용 스타일
 ──────────────── */
+/* ─────────────────────────────────────
+   기본 설정
+──────────────────────────────────── */
 body {
   margin: 0;
   background: #19141e;
@@ -213,15 +216,18 @@ body {
   align-items: center;
   justify-content: center;
 }
-/* 프로필 카드 중앙 */
+
+/* ─────────────────────────────────────
+   프로필 카드
+──────────────────────────────────── */
 .profile-popup {
-  width: 900px;
-  max-width: 97vw;
-  background: rgba(20,20,25,0.98);
-  border-radius: 20px;
+  width: 1300px;
+  max-width: 99vw;
+  background: rgba(20, 20, 25, 0.98);
+  border-radius: 32px;
   box-shadow: 0 8px 48px 0 #1118;
   color: white;
-  padding: 48px 48px 40px 48px;
+  padding: 70px 70px 56px 70px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -229,65 +235,102 @@ body {
 }
 .profile-row {
   display: flex;
-  flex-direction: row;
   width: 100%;
   align-items: flex-start;
-  gap: 38px;
+  gap: 66px;
 }
 .profile-imgbox {
-  width: 210px;
-  height: 260px;
+  width: 310px;
+  height: 380px;
   position: relative;
   flex-shrink: 0;
 }
 .profile-img {
-  width: 210px;
-  height: 260px;
+  width: 310px;
+  height: 380px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 18px;
   position: relative;
   z-index: 2;
   box-shadow: 0 4px 20px #0008;
 }
 .bg-shape {
   position: absolute;
-  left: -15px;
+  left: -23px;
   top: 0;
-  width: 235px;
-  height: 280px;
+  width: 345px;
+  height: 410px;
   background: #f4368c;
-  border-radius: 32px 16px 80px 12px;
+  border-radius: 44px 24px 100px 18px;
   z-index: 1;
   opacity: 0.78;
   transform: rotate(-5deg);
 }
-.profile-main { width: 100%; }
-
+.profile-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 8px; /* 👈 이 부분 추가 또는 조정 */
+}
 .profile-name {
-  font-size: 2.0rem;
+  font-size: 2.9rem;
   font-weight: 900;
   letter-spacing: -1px;
   margin-bottom: 6px;
   margin-top: 0;
+  position: relative;
 }
+
 .profile-name .en {
-  font-size: 1rem;
+  font-size: 1.37rem;
   font-weight: 400;
   color: #ff66b2;
-  margin-left: 8px;
-  vertical-align: top;
+  position: absolute;
+  top: 50%;
+  left: 160px; /* ✅ ← 위치 조절값, 딱 네가 그려놓은 중앙쯤 */
+  transform: translateY(-50%);
+  white-space: nowrap;
 }
-.profile-meta { font-size: 1.06rem; color: #ccc; line-height: 1.7; }
-.profile-meta strong { color: hotpink; font-weight: 700; }
-.profile-meta ul {
-  margin: 6px 0 12px 28px;
-  padding: 0;
+.profile-meta {
+  font-size: 1.4rem;
   color: #ccc;
-  font-size: 1.04em;
-  list-style-type: disc;
+  line-height: 1.7;
+  margin-left: 0; /* 👈 혹시 margin이 있으면 제거 */
 }
-.profile-meta ul li { margin-bottom: 2px; }
+.profile-meta strong {
+  color: hotpink;
+  font-weight: 700;
+}
+.profile-meta ul {
+  list-style: none;         /* ★ 기본 점 제거 */
+  margin: 6px 0 12px 0;
+  padding-left: 0.8em;
+}
 
+.profile-meta li {
+  list-style: none;
+  margin: 6px 0 12px 0;
+  position: relative;
+  padding-left: 1em;
+  text-indent: -0.5em;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.profile-meta li::before {
+  content: "•";             /* 점 수동 생성 */
+  position: absolute;
+  left: 0;
+  top: 0.12em;
+  color: #ccc;
+  font-size: 0.9em;
+  line-height: 1;
+}
+
+/* ─────────────────────────────────────
+   갤러리 제목
+──────────────────────────────────── */
 .gallery-section {
   margin-top: 50px;
   width: 100%;
@@ -296,194 +339,174 @@ body {
   align-items: center;
 }
 .gallery-title {
-  font-size: 20px;
+  font-size: 2rem;
   color: #fff;
-  margin-bottom: 16px;
+  margin-bottom: 28px;
   font-weight: 700;
   letter-spacing: -0.5px;
   text-align: left;
-  width: 850px;
-  max-width: 95vw;
-  padding-left: 10px;
-  border-left: 6px solid #ff5eae;
+  width: 1200px;
+  padding-left: 16px;
+  border-left: 9px solid #ff5eae;
   box-sizing: border-box;
 }
 
+/* ─────────────────────────────────────
+   갤러리 슬라이더
+──────────────────────────────────── */
 .gallery-slider-center {
+  position: relative;
+  overflow: visible;
+  width: 1300px; /* ← 기존보다 넉넉히 키워줌 */
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 950px;
-  max-width: 99vw;
-  margin: 0 auto;
-  position: relative;
-  gap: 0;
 }
-.arrow-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #2e2436;
-  color: #ff5eae;
-  border: none;
-  font-size: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: relative;
-  z-index: 2;
-  transition: background 0.2s;
-  margin: 0 10px;
-}
-.arrow-btn:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-  background: #444;
-  pointer-events: none;
-}
+
+/* 슬라이더 뷰포트 */
 .slider-viewport {
+  width: 1140px;  /* ← 썸네일 240px * 4 + 간격(34px * 3) 확보 */
+  height: 200px;
   overflow: hidden;
-  width: 820px;     /* 180*4 + 24*3 */
-  height: 170px;
   display: flex;
   align-items: center;
 }
 .slider-track {
   display: flex;
-  transition: transform 0.5s cubic-bezier(.4,.8,.34,1);
-  gap: 24px;
+  gap: 60px;
+  transition: transform 0.5s ease;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto; /* ← 트랙 중앙 정렬 추가 */
 }
-.thumb-item {
-  width: 180px;
-  min-width: 180px;
-  background: #25202a;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px #0004;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+/* 화살표 버튼 위치 고정 */
+#prevBtn {
+  position: absolute;
+  left: -70px;
+  top: 50%;
+  transform: translateY(-50%);
 }
-.thumb-item img {
-  width: 100%;
-  height: 105px;
-  object-fit: cover;
-  display: block;
-}
-.thumb-title {
-  padding: 8px 10px 10px 10px;
-  font-size: 1em;
-  color: #ffe0f2;
-  font-weight: 600;
-  min-height: 22px;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-@media (max-width: 1000px) {
-  .gallery-title { width: 98vw;}
-  .slider-viewport { width: 94vw; }
-  .gallery-slider-center { width: 98vw; }
-  .thumb-item { width: 24vw; min-width: 24vw; max-width: 210px;}
-}
-@media (max-width: 700px) {
-  .slider-viewport { width: 95vw;}
-  .thumb-item { width: 34vw; min-width: 34vw;}
-}
-/* =====================
-   전체적으로 크기 키우기
-====================== */
-
-/* 프로필 카드 */
-.profile-popup {
-  width: 1300px;
-  max-width: 99vw;
-  padding: 70px 70px 56px 70px;
-  border-radius: 32px;
-}
-
-/* 프로필 이미지 */
-.profile-imgbox {
-  width: 310px;
-  height: 380px;
-}
-.profile-img {
-  width: 310px;
-  height: 380px;
-  border-radius: 18px;
-}
-.bg-shape {
-  left: -23px;
-  width: 345px;
-  height: 410px;
-  border-radius: 44px 24px 100px 18px;
-}
-
-/* 텍스트 크기 up */
-.profile-name {
-  font-size: 2.9rem;
-}
-.profile-name .en {
-  font-size: 1.37rem;
-}
-.profile-meta {
-  font-size: 1.4rem;
-}
-.profile-meta ul {
-  font-size: 1.18em;
-}
-
-/* row 간격 */
-.profile-row {
-  gap: 66px;
-}
-
-/* 슬라이더 & 갤러리 */
-.gallery-title {
-  font-size: 2.0rem;
-  width: 1200px;
-  padding-left: 16px;
-  border-left-width: 9px;
-  margin-bottom: 28px;
-}
-.gallery-slider-center {
-  width: 1200px;
+#nextBtn {
+  position: absolute;
+  right: -70px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .arrow-btn {
   width: 60px;
   height: 60px;
   font-size: 2.6em;
-  margin: 0 22px;
-}
-.slider-viewport {
-  width: 1040px;
-  height: 210px;
-}
-.slider-track {
+  border-radius: 50%;
+  background: #2e2436;
+  color: #ff5eae;
+  border: none;
   display: flex;
-  transition: transform 0.5s ease;
-  gap: 34px;
-  width: fit-content; /* ⭐ 핵심! 트랙의 가로 길이를 내용만큼으로 */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s, color 0.2s;
 }
+.arrow-btn:hover {
+  background: #ff5eae;
+  color: #2e2436;
+}
+.arrow-btn:disabled {
+  opacity: 0.3;
+  background: #444;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────
+   썸네일 항목
+──────────────────────────────────── */
 .thumb-item {
   width: 240px;
   min-width: 240px;
+  height: 180px;
   border-radius: 18px;
+  background: #25202a;
+  overflow: hidden;
+  box-shadow: 0 4px 10px #0004;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 .thumb-item img {
-  height: 140px;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  display: block;
 }
 .thumb-title {
-  font-size: 1.19em;
-  min-height: 30px;
-  padding: 13px 15px 15px 15px;
+  font-size: 1em;
+  padding: 6px 15px;
+  color: #ffe0f2;
+  font-weight: 600;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  
+  /* 수정된 부분 */
+  height: auto;            /* 🔥 고정 높이 제거 */
+  min-height: 30px;        /* 최소 높이만 설정 */
+  line-height: 1.4;        /* 줄 간격 보정 */
 }
 
-/* 반응형(최대 폭만 99vw 유지) */
+/* ─────────────────────────────────────
+   반응형
+──────────────────────────────────── */
 @media (max-width: 1400px) {
-  .profile-popup, .gallery-title, .gallery-slider-center { width: 99vw; max-width: 99vw;}
-  .slider-viewport { width: 95vw; }
+  .profile-popup,
+  .gallery-title,
+  .gallery-slider-center {
+    width: 99vw;
+    max-width: 99vw;
+  }
+  .slider-viewport {
+    width: 95vw;
+  }
+}
+@media (max-width: 1000px) {
+  .thumb-item {
+    width: 24vw;
+    min-width: 24vw;
+    max-width: 210px;
+  }
+}
+@media (max-width: 700px) {
+  .thumb-item {
+    width: 34vw;
+    min-width: 34vw;
+  }
+}
+/* ─────────────────────────────────────
+   텍스트 2열 정렬 (경력 / 자격증)
+──────────────────────────────────── */
+.row-list {
+  display: flex;
+  gap: 60px;
+  margin-top: 20px;
+}
+
+.column {
+  flex: 1;
+}
+
+.column strong {
+  display: block;
+  margin-bottom: 6px;
+  color: hotpink;
+}
+
+.column ul {
+  margin: 0 0 12px 20px;
+  padding: 0;
+  list-style-type: disc;
+  font-size: 1.18em;
 }

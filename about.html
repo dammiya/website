@@ -5,10 +5,6 @@
   <title>김담미 프로필카드</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap">
   <link rel="stylesheet" href="style.css">
-  <style>
-    .pink { color: #ff5eae !important; }
-    .profile-name .en { margin-left: 8px; font-size: 1rem; font-weight: 400; vertical-align: top; }
-  </style>
 </head>
 <body>
   <div class="center-box">
@@ -18,40 +14,52 @@
           <div class="bg-shape"></div>
           <img class="profile-img" src="dammi.jpg" alt="김담미 프로필">
         </div>
-       <div class="profile-main">
-  <h2 class="profile-name">
-    김담미 <span class="en">Kim dam mi</span>
-  </h2>
-  <div class="profile-meta">
-    <strong>생년월일:</strong> 2004년 02월 02일<br>
-    <strong>MBTI:</strong> ENFJ<br>
-    <strong>사이트:</strong>
-    <a href="#"><img ...></a>
-    <a href="#"><img ...></a>
-    <a href="#"><img ...></a>
-    <br>
-    <strong>경력</strong>
-            <ul>
-              <li>MCC 수습기자</li>
-              <li>별무리 홍보기자 27기</li>
-              <li>12대 학생회 문화부장</li>
-            </ul>
-          </div>
+        <div class="profile-main">
+          <h2 class="profile-name">
+             김담미 <span class="en">Kim dam mi</span>
+          </h2>
+          <div class="profile-meta">
+  <div class="section">
+    <strong>계정</strong>
+    <ul>
+      <li>ekaal234naver.com</li>
+      <li>@d2m_mi2</li>
+    </ul>
+  </div>
+
+  <div class="row-list">
+    <div class="column">
+      <strong>경력</strong>
+      <ul>
+        <li>MCC 수습기자</li>
+        <li>별무리 홍보기자 27기</li>
+        <li>12대 학생회 문화부장</li>
+      </ul>
+    </div>
+    <div class="column">
+      <strong>자격증</strong>
+      <ul>
+        <li>GTQ 1급</li>
+        <li>컴퓨터활용능력 2급</li>
+      </ul>
+    </div>
+  </div>
+</div>
         </div>
       </div>
-    </div>
-    <div class="gallery-section">
-      <div class="gallery-title">이미지</div>
-      <div class="gallery-slider-center">
-        <button class="arrow-btn" id="prevBtn">&#8592;</button>
-        <div class="slider-viewport">
-          <div class="slider-track" id="sliderTrack">
+
+      <div class="gallery-section">
+        <div class="gallery-title">이미지</div>
+        <div class="gallery-slider-center">
+          <button class="arrow-btn" id="prevBtn">&#8592;</button>
+          <div class="slider-viewport">
+            <div class="slider-track" id="sliderTrack"></div>
           </div>
+          <button class="arrow-btn" id="nextBtn">&#8594;</button>
         </div>
-        <button class="arrow-btn" id="nextBtn">&#8594;</button>
       </div>
     </div>
   </div>
-<script src="main.js"></script>
+  <script src="about.js"></script>
 </body>
 </html>
