@@ -1,4 +1,3 @@
-// ✅ 4. 슬라이드 갤러리
 document.addEventListener('DOMContentLoaded', () => {
   console.log("JS 연결됨");
 
@@ -21,10 +20,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
 
+  // 팝업 HTML 삽입
+  const popupHTML = `
+    <div id="popup" class="popup hidden">
+      <span class="close-btn">&times;</span>
+      <img id="popup-img" src="" alt="popup image">
+    </div>
+  `;
+  document.body.insertAdjacentHTML('beforeend', popupHTML);
+
+  const popup = document.getElementById('popup');
+  const popupImg = document.getElementById('popup-img');
+  const closeBtn = document.querySelector('.close-btn');
+
+  closeBtn.addEventListener('click', () => {
+    popup.classList.add('hidden');
+    popupImg.src = '';
+  });
+
   function renderSliderPage(page) {
     if (!track) return;
 
-    track.innerHTML = ''; // 이전 것들 제거
+    track.innerHTML = '';
     const start = page * itemsPerPage;
     const items = imageData.slice(start, start + itemsPerPage);
 
@@ -35,10 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="${data.src}" alt="${data.title}">
         <div class="thumb-title">${data.title}</div>
       `;
+
+      // 이미지 클릭 시 팝업 열기
+      item.querySelector('img').addEventListener('click', () => {
+        popupImg.src = data.src;
+        popup.classList.remove('hidden');
+      });
+
       track.appendChild(item);
     });
 
-    // 버튼 비활성화 상태 업데이트
     prevBtn.disabled = currentPage === 0;
     nextBtn.disabled = currentPage === totalPages - 1;
   }
@@ -57,5 +80,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  renderSliderPage(currentPage); // 처음 실행
+  renderSliderPage(currentPage);
 });
