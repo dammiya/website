@@ -63,6 +63,14 @@
     />
   </div>
   <script src="main.js"></script>
-  <script src="visualizer.js"></script>
+  <!-- ✅ 자동재생 강제 시도 -->
+  <script>
+    const bgVideo = document.querySelector('.bg-video');
+    if (bgVideo) {
+      bgVideo.play().catch((e) => {
+        console.warn('자동재생 차단됨. 사용자 인터랙션 필요');
+      });
+    }
+  </script>
 </body>
 </html>

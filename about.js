@@ -81,4 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   renderSliderPage(currentPage);
+
+  // ✅ 나가기 버튼 클릭 → 이전 페이지로 이동
+  const exitBtn = document.getElementById('exitBackBtn');
+  if (exitBtn) {
+    exitBtn.addEventListener('click', () => {
+      window.history.back(); // ← 이전 위치로 되돌아감
+    });
+  }
 });
