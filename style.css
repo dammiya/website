@@ -577,3 +577,134 @@ body {
   pointer-events: none;
   line-height: 1;
 }
+
+/* ─────────────────────────────────────
+   vision.html css
+──────────────────────────────────── */
+body {
+  margin: 0;
+  padding: 200px 0 0 0; /* 👈 body에도 top padding 줘서 밀기 */
+  background-color: #0b0b0b;
+  color: white;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.vision-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 200px 0 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 80px; /* ← 공간 조정 */
+  position: relative; /* 👈 기준 요소로 설정 */
+}
+
+.vision-circles {
+  position: relative;     /* ✅ absolute → relative로 변경 */
+  top: 0;
+  right: 0;               /* ❌ 필요 없음 */
+  width: 400px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.vision-left {
+  flex: 1;
+  /* padding-left: 80px; ← ❌ 이거 대신 아래처럼 margin */
+  margin-left: 300px; /* ✅ 오른쪽으로 이동 */
+}
+
+.vision-left h2 {
+  color: #ED4787; /* ✅ 정확한 색상 적용 */
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.main-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.desc {
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.desc strong {
+  color: white;
+  font-weight: 600;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.step-num {
+  display: block;
+  color: hotpink;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+
+/* 원 배치 삼각형 */
+.vision-circles {
+  position: relative;
+  width: 400px;
+  height: 360px;
+  margin-left: 40px; /* ← 전체적으로 오른쪽에서 가운데로 이동 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, #ED4787 55%, rgba(237, 71, 135, 0.5) 100%);
+  border-radius: 50%;
+  color: white;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(237, 71, 135, 0.3);
+  z-index: 2;
+}
+
+.circle span {
+  margin-top: 6px;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+/* 삼각형 위치 */
+.circle.info {
+  top: 0;
+  left: 110px;
+}
+.circle.mood {
+  bottom: 0;
+  left: 10px;  /* ← 왼쪽 원 살짝 오른쪽 이동 */
+}
+.circle.funny {
+  bottom: 0;
+  right: 10px; /* ← 오른쪽 원 살짝 왼쪽 이동 */
+}
