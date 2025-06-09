@@ -583,7 +583,7 @@ body {
 ──────────────────────────────────── */
 body {
   margin: 0;
-  padding: 200px 0 0 0; /* 👈 body에도 top padding 줘서 밀기 */
+  padding: 100px 0 0 0; /* 전체를 위로 조금 올림 */
   background-color: #0b0b0b;
   color: white;
   font-family: 'Noto Sans KR', sans-serif;
@@ -592,34 +592,22 @@ body {
 .vision-container {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 200px 0 0 40px;
+  padding: 0 40px; /* top padding 제거, 내부 여백 유지 */
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 80px; /* ← 공간 조정 */
-  position: relative; /* 👈 기준 요소로 설정 */
-}
-
-.vision-circles {
-  position: relative;     /* ✅ absolute → relative로 변경 */
-  top: 0;
-  right: 0;               /* ❌ 필요 없음 */
-  width: 400px;
-  height: 360px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 80px;
+  position: relative;
 }
-
 
 .vision-left {
   flex: 1;
-  /* padding-left: 80px; ← ❌ 이거 대신 아래처럼 margin */
-  margin-left: 300px; /* ✅ 오른쪽으로 이동 */
+  margin-left: 100px;
+  margin-top: 60px; /* ✅ 추가: 원하는 만큼 내려주기 */
 }
 
 .vision-left h2 {
-  color: #ED4787; /* ✅ 정확한 색상 적용 */
+  color: #ED4787;
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 10px;
@@ -650,7 +638,6 @@ body {
   gap: 20px;
 }
 
-
 .step-num {
   display: block;
   color: hotpink;
@@ -659,52 +646,89 @@ body {
   margin-bottom: 6px;
 }
 
-
-/* 원 배치 삼각형 */
+/* 원 wrapper */
 .vision-circles {
   position: relative;
-  width: 400px;
-  height: 360px;
-  margin-left: 40px; /* ← 전체적으로 오른쪽에서 가운데로 이동 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 600px;
+  height: 560px;
+  margin-right: 100px;
+
+  /* 👇 기존 정중앙 정렬 삭제하고 아래로 조정 */
+  top: 100px; /* 원하는 만큼 아래로 조정 (예: 100~150px) */
+  transform: none;
 }
 
+/* 공통 원 스타일 (지름 300px) */
+/* 공통 원 */
 .circle {
-  position: absolute;
+  /* 원 스타일 기본 */
+  position: fixed;
   width: 180px;
   height: 180px;
-  background: radial-gradient(circle, #ED4787 55%, rgba(237, 71, 135, 0.5) 100%);
   border-radius: 50%;
+  background: radial-gradient(circle, #ED4787 30%, #ED4787(237, 71, 135, 0.5) 100%);
   color: white;
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1rem;
   text-align: center;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 12px rgba(237, 71, 135, 0.3);
-  z-index: 2;
+  z-index: 1000;
+  pointer-events: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.4s ease;
+
+  /* 기본 빛 효과 */
+  box-shadow:
+    0 0 40px rgba(255, 0, 150, 0.6),
+    0 0 80px rgba(255, 0, 150, 0.3);
+}
+
+.circle:hover {
+  /* 마우스 오버 시 빛이 더 커지게 */
+  box-shadow:
+    0 0 80px rgba(255, 0, 150, 0.8),
+    0 0 200px rgba(255, 0, 150, 0.5),
+    0 0 200px rgba(255, 0, 150, 0.3);
+  transform: scale(1.3); /* 크기 커짐 효과 */
+}
+
+  /* 애니메이션 준비 */
+  transition: transform 0.2s ease-out;
+}
+
+.circle:hover {
+  animation: burst 0.6s ease-out forwards;
+}
+
+@keyframes burst {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25); /* 커지면서 팡! */
+  }
+  100% {
+    transform: scale(1); /* 다시 원래대로 */
+  }
 }
 
 .circle span {
   margin-top: 6px;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
-/* 삼각형 위치 */
+/* 정삼각형 배치 (300px 기준 좌표) */
 .circle.info {
   top: 0;
-  left: 110px;
+  left: 150px; /* 중앙 */
 }
 .circle.mood {
   bottom: 0;
-  left: 10px;  /* ← 왼쪽 원 살짝 오른쪽 이동 */
+  left: 0;
 }
 .circle.funny {
   bottom: 0;
-  right: 10px; /* ← 오른쪽 원 살짝 왼쪽 이동 */
+  right: 0;
 }
