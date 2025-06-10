@@ -90,3 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+  closeBtn.addEventListener('click', () => {
+    popup.classList.add('hidden');
+    popupImg.src = '';
+    document.body.classList.remove('popup-active'); // ✨ 효과 해제
+  });
+
+  function renderSliderPage(page) {
+    ...
+      item.querySelector('img').addEventListener('click', () => {
+        popupImg.src = data.src;
+        popup.classList.remove('hidden');
+        document.body.classList.add('popup-active'); // ✨ 흐림효과 적용
+      });
+    ...
+  }

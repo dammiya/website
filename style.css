@@ -45,7 +45,7 @@ body {
   width: 4px;
   height: 10px;
   background: white;
-  transition: height 0.1s ease;
+  transition: height 0.1s ease; rotate(180deg);
 }
 
 /* ────────────────────────────────────
@@ -576,6 +576,13 @@ body {
   font-family: sans-serif;
   pointer-events: none;
   line-height: 1;
+}
+
+.popup-active .exit-button {
+  opacity: 0.3;
+  filter: blur(1px);
+  pointer-events: none; /* 클릭 방지 (선택사항) */
+  transition: all 0.3s ease;
 }
 
 /* ─────────────────────────────────────
