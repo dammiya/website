@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Project Gallery</title>
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+  <div class="gallery-container">
+    <!-- 메인 뷰 -->
+    <div class="gallery-main">
+      <img id="mainImage" src="ep1.jpg" alt="" />
+      <div class="gallery-text">
+        <span class="episode">EP-03</span>
+        <h2 class="title">우산을 쓴 남자</h2>
+        <p class="description">
+          VOD플랫폼에서… (여기에 설명을 넣으세요)
+        </p>
+      </div>
+      <button id="openFullscreen" class="fullscreen-btn">🔍</button>
+    </div>
+    <!-- 썸네일 리스트 -->
+    <div class="thumb-list">
+      <button class="thumb" data-src="ep1.jpg"
+              data-ep="EP-03"
+              data-title="우산을 쓴 남자"
+              data-desc="VOD플랫폼에서…">
+        <img src="ep1_thumb.jpg" alt="" />
+      </button>
+      <button class="thumb" data-src="ep2.jpg"
+              data-ep="EP-05"
+              data-title="초대장"
+              data-desc="초대장 에피소드 설명…">
+        <img src="ep2_thumb.jpg" alt="" />
+      </button>
+      <!-- 필요한 만큼 반복 -->
+    </div>
+  </div>
+
+  <!-- 전체화면 모달 -->
+  <div id="modal" class="modal hidden">
+    <button id="closeModal" class="close-btn">✕</button>
+    <img id="modalImage" src="" alt="" />
+    <div id="modalCaption" class="modal-caption"></div>
+  </div>
+
+  <script src="project.js"></script>
+</body>
+</html>

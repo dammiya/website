@@ -56,12 +56,13 @@ function animate() {
   requestAnimationFrame(animate);
   analyser.getByteFrequencyData(dataArray);
 
-  bars.forEach((bar, i) => {
-    const value = dataArray[i];
-    bar.style.height = `${10 + value / 3}px`;
-  });
+bars.forEach((bar, i) => {
+  const step = Math.floor(dataArray.length / bars.length);
+  const value = dataArray[i * step];
+  const scaledValue = Math.min(1, value / 600, 0.7); // 0~1 사이 값으로 스케일 조정
+  bar.style.transform = `scaleY(${scaledValue})`;
+});
 }
-
 audioElement.addEventListener("play", () => {
   audioCtx.resume();
   animate();

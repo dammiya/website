@@ -39,13 +39,15 @@ body {
   right: 20px;
   display: flex;
   gap: 3px;
-  z-index: 10;
+  z-index: 9999;
+
 }
 .bar {
   width: 4px;
   height: 10px;
-  background: white;
-  transition: height 0.1s ease; rotate(180deg);
+  background: #ff007f;
+  transition: height 0.1s ease;
+  transform-origin: top;
 }
 
 /* ────────────────────────────────────
@@ -149,23 +151,24 @@ body {
   max-width: 700px;
   text-align: start;
 }
-.caption {
+ .caption {
   display: grid;
   grid-template-columns: auto auto auto auto;
   column-gap: 30px;
   row-gap: 10px;
+
+  /* ↓ 이 한 줄만 추가합니다 */
+  align-items: center;   /* 레이블·값 모두 세로 가운데 정렬 */
+
+  /* 기존 마진 그대로 */
   margin: 3px 0 0 3px;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  text-align: start;
 }
 .caption .label {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 400;
-  font-size: 20px;
-  color: rgb(255, 70, 162);
+  color: #ED4787;
+  font-size: 19px;
+  font-weight: 600; /* 한 단계 굵게 */
 }
+
 .caption .value a:link,
 .caption .value a:visited {
   color: white;
@@ -177,7 +180,7 @@ body {
 .profile-photo {
   position: absolute;
   top: 50%;
-  left: 1400px;
+  left: 1000px;
   width: 500px;
   height: auto;
   z-index: 1;
@@ -204,77 +207,77 @@ body {
 /* ─────────────────────────────────────
    기본 설정
 ──────────────────────────────────── */
-body {
-  margin: 0;
-  background: #19141e;
-  font-family: 'Noto Sans KR', sans-serif;
-}
 .center-box {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
 
-/* ─────────────────────────────────────
-   프로필 카드
-──────────────────────────────────── */
+  /* 🔥 추가 */
+  width: 100vw;
+}
 .profile-popup {
-  width: 1300px;
+  width: 950px;
   max-width: 99vw;
   background: rgba(20, 20, 25, 0.98);
-  border-radius: 32px;
+  border-radius: 26px;
   box-shadow: 0 8px 48px 0 #1118;
   color: white;
-  padding: 70px 70px 56px 70px;
+  padding: 45px 45px 36px 45px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+
 .profile-row {
   display: flex;
   width: 100%;
   align-items: flex-start;
-  gap: 66px;
+  gap: 42px;
 }
+
 .profile-imgbox {
-  width: 310px;
-  height: 380px;
+  width: 228px;
+  height: 285px;
   position: relative;
   flex-shrink: 0;
 }
+
 .profile-img {
-  width: 310px;
-  height: 380px;
+  width: 228px;
+  height: 285px;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 15px;
   position: relative;
   z-index: 2;
   box-shadow: 0 4px 20px #0008;
 }
+
 .bg-shape {
   position: absolute;
-  left: -23px;
+  left: -16px;
   top: 0;
-  width: 345px;
-  height: 410px;
+  width: 255px;
+  height: 310px;
   background: #f4368c;
-  border-radius: 44px 24px 100px 18px;
+  border-radius: 36px 18px 72px 14px;
   z-index: 1;
   opacity: 0.78;
   transform: rotate(-5deg);
 }
+
 .profile-main {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 8px; /* 👈 이 부분 추가 또는 조정 */
+  margin-left: 8px;
 }
+
 .profile-name {
-  font-size: 2.9rem;
+  font-size: 2.1rem;
   font-weight: 900;
   letter-spacing: -1px;
   margin-bottom: 6px;
@@ -283,27 +286,30 @@ body {
 }
 
 .profile-name .en {
-  font-size: 1.37rem;
+  font-size: 1rem;
   font-weight: 400;
   color: #ff66b2;
   position: absolute;
   top: 50%;
-  left: 160px; /* ✅ ← 위치 조절값, 딱 네가 그려놓은 중앙쯤 */
+  left: 120px;
   transform: translateY(-50%);
   white-space: nowrap;
 }
+
 .profile-meta {
-  font-size: 1.4rem;
+  font-size: 1.05rem;
   color: #ccc;
   line-height: 1.7;
-  margin-left: 0; /* 👈 혹시 margin이 있으면 제거 */
+  margin-left: 0;
 }
+
 .profile-meta strong {
   color: hotpink;
   font-weight: 700;
 }
+
 .profile-meta ul {
-  list-style: none;         /* ★ 기본 점 제거 */
+  list-style: none;
   margin: 6px 0 12px 0;
   padding-left: 0.8em;
 }
@@ -319,7 +325,7 @@ body {
 }
 
 .profile-meta li::before {
-  content: "•";             /* 점 수동 생성 */
+  content: "•";
   position: absolute;
   left: 0;
   top: 0.12em;
@@ -328,74 +334,72 @@ body {
   line-height: 1;
 }
 
-/* ─────────────────────────────────────
-   갤러리 제목
-──────────────────────────────────── */
+/* 갤러리 영역도 함께 5% 축소 */
 .gallery-section {
-  margin-top: 50px;
+  margin-top: 40px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .gallery-title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #fff;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   font-weight: 700;
   letter-spacing: -0.5px;
   text-align: left;
-  width: 1200px;
+  width: 860px;
   padding-left: 16px;
   border-left: 9px solid #ff5eae;
   box-sizing: border-box;
 }
 
-/* ─────────────────────────────────────
-   갤러리 슬라이더
-──────────────────────────────────── */
 .gallery-slider-center {
   position: relative;
   overflow: visible;
-  width: 1300px; /* ← 기존보다 넉넉히 키워줌 */
+  width: 950px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 슬라이더 뷰포트 */
 .slider-viewport {
-  width: 1140px;  /* ← 썸네일 240px * 4 + 간격(34px * 3) 확보 */
-  height: 200px;
+  width: 830px;
+  height: 152px;
   overflow: hidden;
   display: flex;
   align-items: center;
 }
+
 .slider-track {
   display: flex;
-  gap: 60px;
+  gap: 46px;
   transition: transform 0.5s ease;
   width: fit-content;
   margin-left: auto;
-  margin-right: auto; /* ← 트랙 중앙 정렬 추가 */
+  margin-right: auto;
 }
-/* 화살표 버튼 위치 고정 */
+
 #prevBtn {
   position: absolute;
-  left: -70px;
+  left: -56px;
   top: 50%;
   transform: translateY(-50%);
 }
+
 #nextBtn {
   position: absolute;
-  right: -70px;
+  right: -56px;
   top: 50%;
   transform: translateY(-50%);
 }
+
 .arrow-btn {
-  width: 60px;
-  height: 60px;
-  font-size: 2.6em;
+  width: 48px;
+  height: 48px;
+  font-size: 2em;
   border-radius: 50%;
   background: #2e2436;
   color: #ff5eae;
@@ -407,24 +411,23 @@ body {
   z-index: 2;
   transition: background 0.2s, color 0.2s;
 }
+
 .arrow-btn:hover {
   background: #ff5eae;
   color: #2e2436;
 }
+
 .arrow-btn:disabled {
   opacity: 0.3;
   background: #444;
   pointer-events: none;
 }
 
-/* ─────────────────────────────────────
-   썸네일 항목
-──────────────────────────────────── */
 .thumb-item {
-  width: 240px;
-  min-width: 240px;
-  height: 180px;
-  border-radius: 18px;
+  width: 170px;
+  min-width: 170px;
+  height: 132px;
+  border-radius: 15px;
   background: #25202a;
   overflow: hidden;
   box-shadow: 0 4px 10px #0004;
@@ -434,28 +437,27 @@ body {
   align-items: center;
   justify-content: flex-start;
 }
+
 .thumb-item img {
   width: 100%;
-  height: 150px;
+  height: 102px;
   object-fit: cover;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   display: block;
 }
+
 .thumb-title {
-  font-size: 1em;
+  font-size: 0.95em;
   padding: 6px 15px;
   color: #ffe0f2;
   font-weight: 600;
   text-align: left;
   width: 100%;
   box-sizing: border-box;
-  background: transparent;
-  
-  /* 수정된 부분 */
-  height: auto;            /* 🔥 고정 높이 제거 */
-  min-height: 30px;        /* 최소 높이만 설정 */
-  line-height: 1.4;        /* 줄 간격 보정 */
+  height: auto;
+  min-height: 30px;
+  line-height: 1.4;
 }
 
 /* ─────────────────────────────────────
@@ -538,19 +540,26 @@ body {
   display: none;
 }
 
+.popup-content {
+  position: relative;
+  display: inline-block;
+}
+
 .close-btn {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 10px;
+  right: 10px;  /* ← 이미지 오른쪽 상단에서 10px 띄움 */
   font-size: 40px;
   color: white;
   cursor: pointer;
+  z-index: 10;
 }
 
 .exit-button {
-  position: fixed;
-  top: 300px;
-  left: 200px;
+  position: absolute;
+  top: 60px;
+  left: 300px;
+
   width: 48px;
   height: 48px;
   background-color: #2b152b;
@@ -563,10 +572,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 5;
   transition: background 0.3s, color 0.3s;
 }
-
 .exit-button:hover {
   background-color: #ff5eae;
   color: #2b152b;
@@ -702,7 +710,6 @@ body {
 
   /* 애니메이션 준비 */
   transition: transform 0.2s ease-out;
-}
 
 .circle:hover {
   animation: burst 0.6s ease-out forwards;
