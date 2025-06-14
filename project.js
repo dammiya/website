@@ -1,36 +1,32 @@
-const mainImage   = document.getElementById('mainImage');
-const epTxt       = document.querySelector('.gallery-text .episode');
-const titleTxt    = document.querySelector('.gallery-text .title');
-const descTxt     = document.querySelector('.gallery-text .description');
-const thumbs      = document.querySelectorAll('.thumb');
-const openBtn     = document.getElementById('openFullscreen');
-const modal       = document.getElementById('modal');
-const modalImg    = document.getElementById('modalImage');
-const modalCaption= document.getElementById('modalCaption');
-const closeModal  = document.getElementById('closeModal');
+document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.card');
+    const mainTitle = document.querySelector('.main-feature h1');
+    const mainDescription = document.getElementById('mainDescription');
 
-// 썸네일 클릭 → 메인 업데이트
-thumbs.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // active 표시
-    thumbs.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    // 데이터 읽어서 메인 반영
-    mainImage.src    = btn.dataset.src;
-    epTxt.textContent    = btn.dataset.ep;
-    titleTxt.textContent = btn.dataset.title;
-    descTxt.textContent  = btn.dataset.desc;
+    cards.forEach(card => {
+        card.addEventListener('click', function () {
+            // 모든 카드에서 'active' 클래스 제거
+            cards.forEach(c => c.classList.remove('active'));
+            // 클릭된 카드에 'active' 클래스 추가
+            this.classList.add('active');
+
+            // data 속성에서 텍스트 가져오기
+            const newTitle = this.dataset.title;
+            const newDesc = this.dataset.desc;
+
+            // 메인 콘텐츠 텍스트 변경
+            mainTitle.textContent = newTitle;
+            mainDescription.textContent = newDesc;
+        });
+    });
+});
+
+// 썸네일 스크롤 감도 및 부드럽게 이동
+const thumbList = document.querySelector('.thumb-list');
+document.querySelector('.thumb-scroll-area').addEventListener('wheel', function(e) {
+  e.preventDefault();
+  thumbList.scrollBy({
+    top: e.deltaY * 1.2, // 스크롤 속도 살짝 증폭
+    behavior: 'smooth'
   });
-});
-
-// 전체화면 모달 열기
-openBtn.addEventListener('click', () => {
-  modalImg.src      = mainImage.src;
-  modalCaption.textContent = `${epTxt.textContent} ${titleTxt.textContent}\n${descTxt.textContent}`;
-  modal.classList.remove('hidden');
-});
-
-// 모달 닫기
-closeModal.addEventListener('click', () => {
-  modal.classList.add('hidden');
-});
+}, { passive: false });

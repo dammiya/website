@@ -1,123 +1,134 @@
-/* 전체 래퍼 */
-.gallery-container {
-  display: flex;
-  height: 100vh;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 }
-
-/* 메인 이미지 영역 */
-.gallery-main {
-  position: relative;
-  flex: 1;
-  background: #000;
+.bg-row {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 0;
 }
-
-/* 메인 이미지 */
-.gallery-main img {
-  width: 100%;
-  height: 100%;
+.bg-img {
+  height: 100vh;
+  width: auto;
+  min-width: 0;
+  flex-shrink: 0;
   object-fit: cover;
 }
-
-/* 텍스트 오버레이 */
-.gallery-text {
-  position: absolute;
-  top: 20%;
-  left: 5%;
-  color: #fff;
-  max-width: 40%;
-}
-.gallery-text .episode {
-  display: block;
-  font-size: 1rem;
-  color: #ED4787;
-  margin-bottom: 0.5rem;
-}
-.gallery-text .title {
-  font-size: 2.5rem;
-  margin: 0;
-  font-weight: 900;
-}
-.gallery-text .description {
-  margin-top: 1rem;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-/* 전체화면 버튼 */
-.fullscreen-btn {
-  position: absolute;
-  bottom: 2%;
-  right: 2%;
-  background: rgba(0,0,0,0.5);
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-/* 썸네일 리스트 */
-.thumb-list {
-  width: 120px;
-  background: #111;
-  overflow-y: auto;
-  padding-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-.thumb {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-.thumb img {
-  width: 100%;
-  border-radius: 4px;
-  display: block;
-}
-.thumb.active img {
-  outline: 2px solid #ED4787;
-}
-
-/* 전체화면 모달 */
-.modal {
+/* 검정 오버레이 */
+.background-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.85);
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.7);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 70%;
+}
+/* 검정 오버레이 */
+.background-overlay2 {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.7);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 70%;
+}
+.main-text { z-index: 2; /* ...이하 동일 */ }
+.thumb-scroll-area { z-index: 3; /* ...이하 동일 */ }
+/* 이하 생략(위 답변 참고) */
+/* 메인 텍스트 */
+.main-text {
+  position: absolute;
+  left: 90px; top: 140px;
+  z-index: 2;
+  text-align: left;
+}
+.main-title-kor {
+  font-weight: 900;
+  font-size: 2.2rem;
+  color: #ED4787;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.13);
+}
+.main-title-eng {
+  font-weight: 900;
+  font-size: 5.2rem;
+  color: #fff;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.18);
+}
+.main-desc {
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #fff;
+  text-shadow: 0 2px 7px rgba(0,0,0,0.22);
+  margin-bottom: 16px;
+}
+
+/* 오른쪽 썸네일 스크롤 */
+.thumb-scroll-area {
+  position: absolute;
+  top: 80px;
+  right: 40px;
+  width: 260px;
+  height: 540px;
+  background: transparent;
+  z-index: 3;
+  overflow: hidden;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-start;
+  box-shadow: 0 2px 16px 0 rgba(30,30,30,0.13);
+}
+
+.thumb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #e2e2e2 #666;
+}
+.thumb-card {
+  background: rgba(0,0,0,0.12);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px 0 rgba(30,30,30,0.09);
+  padding: 10px 8px 5px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  z-index: 100;
+  width: 100%;
 }
-.modal.hidden {
-  display: none;
+.thumb-card img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
 }
-.modal img {
-  max-width: 80%;
-  max-height: 70%;
-  margin-bottom: 1rem;
-}
-.modal-caption {
+.thumb-caption {
   color: #fff;
+  font-size: 1.13rem;
+  font-weight: 700;
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.13);
   text-align: center;
-  max-width: 80%;
 }
-.close-btn {
-  position: absolute;
-  top: 20px; right: 30px;
-  font-size: 2rem;
-  color: #fff;
-  background: none;
-  border: none;
-  cursor: pointer;
+
+/* 스크롤 바 스타일 */
+.thumb-list::-webkit-scrollbar {
+  width: 16px;
+  background: transparent;
+}
+.thumb-list::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 8px;
+  border: 3px solid #444;
 }

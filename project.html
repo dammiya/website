@@ -2,48 +2,38 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Project Gallery</title>
+  <title>MEDIAVIDEO Concept</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="project.css" />
 </head>
 <body>
-  <div class="gallery-container">
-    <!-- 메인 뷰 -->
-    <div class="gallery-main">
-      <img id="mainImage" src="ep1.jpg" alt="" />
-      <div class="gallery-text">
-        <span class="episode">EP-03</span>
-        <h2 class="title">우산을 쓴 남자</h2>
-        <p class="description">
-          VOD플랫폼에서… (여기에 설명을 넣으세요)
-        </p>
-      </div>
-      <button id="openFullscreen" class="fullscreen-btn">🔍</button>
+  <!-- 배경 이미지 두 장 이어붙임 -->
+  <div class="bg-row">
+    <img src="project1.jpg" class="bg-img" />
+    <img src="project1.jpg" class="bg-img" />
+  </div>
+  <!-- 검정 반투명 사각형(배경 전체 덮기) -->
+  <div class="background-overlay"></div>
+  <div class="background-overlay2"></div>
+  <!-- 메인 텍스트 -->
+  <div class="main-text">
+    <div class="main-title-kor">타이포그래픽스포스터</div>
+    <div class="main-title-eng">MEDIAVIDEO</div>
+    <div class="main-desc">
+      이 디자인은 타이포와 기하학을 이용한<br>
+      모더니즘 느낌의 포스터입니다.
     </div>
-    <!-- 썸네일 리스트 -->
+  </div>
+
+  <!-- 오른쪽 스크롤 썸네일 -->
+  <div class="thumb-scroll-area">
     <div class="thumb-list">
-      <button class="thumb" data-src="ep1.jpg"
-              data-ep="EP-03"
-              data-title="우산을 쓴 남자"
-              data-desc="VOD플랫폼에서…">
-        <img src="ep1_thumb.jpg" alt="" />
-      </button>
-      <button class="thumb" data-src="ep2.jpg"
-              data-ep="EP-05"
-              data-title="초대장"
-              data-desc="초대장 에피소드 설명…">
-        <img src="ep2_thumb.jpg" alt="" />
-      </button>
-      <!-- 필요한 만큼 반복 -->
+      <div class="thumb-card"><img src="thumb1.jpg"><div class="thumb-caption">01. MEDIAVIDEO</div></div>
+      <div class="thumb-card"><img src="thumb2.jpg"><div class="thumb-caption">02. MEDIAVIDEO</div></div>
+      <div class="thumb-card"><img src="thumb3.jpg"><div class="thumb-caption">03. MEDIAVIDEO</div></div>
+      <!-- 썸네일 더 추가 가능 -->
     </div>
   </div>
-
-  <!-- 전체화면 모달 -->
-  <div id="modal" class="modal hidden">
-    <button id="closeModal" class="close-btn">✕</button>
-    <img id="modalImage" src="" alt="" />
-    <div id="modalCaption" class="modal-caption"></div>
-  </div>
-
   <script src="project.js"></script>
 </body>
 </html>
