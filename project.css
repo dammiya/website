@@ -37,46 +37,71 @@ html, body {
   pointer-events: none;
   opacity: 70%;
 }
-.main-text { z-index: 2; /* ...이하 동일 */ }
-.thumb-scroll-area { z-index: 3; /* ...이하 동일 */ }
-/* 이하 생략(위 답변 참고) */
 /* 메인 텍스트 */
 .main-text {
   position: absolute;
-  left: 90px; top: 140px;
+  /* 중앙 정렬에서 왼쪽 정렬로 변경 */
+  left: 10vw;    /* 이미지의 왼쪽 여백+A중앙선까지 실측값(조절!) */
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 2;
-  text-align: left;
-}
-.main-title-kor {
-  font-weight: 900;
-  font-size: 2.2rem;
-  color: #ED4787;
-  margin-bottom: 10px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.13);
-}
-.main-title-eng {
-  font-weight: 900;
-  font-size: 5.2rem;
-  color: #fff;
-  letter-spacing: -1px;
-  margin-bottom: 20px;
-  text-shadow: 0 2px 14px rgba(0,0,0,0.18);
-}
-.main-desc {
-  font-weight: 400;
-  font-size: 1.3rem;
-  color: #fff;
-  text-shadow: 0 2px 7px rgba(0,0,0,0.22);
-  margin-bottom: 16px;
+  width: 900px;    /* 텍스트 영역 넓이, 필요시 조정 */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   /* 왼쪽 정렬 */
+  justify-content: center;
+  text-align: left;          /* 텍스트도 왼쪽 정렬 */
 }
 
+.main-title-kor {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  font-size: 21pt;
+  color: #ED4787;
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.13);
+  margin-left: 0;           /* 왼쪽 여백 0 */
+  text-align: left;
+  width: 100%;              /* 부모폭과 맞추기 */
+  box-sizing: border-box;
+}
+.main-title-eng {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 900;
+  font-size: 56pt;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+  line-height: 1.0;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.18);
+  margin-left: 0;           /* 왼쪽 여백 0 */
+  text-align: left;
+  width: 100%;              /* 부모폭과 맞추기 */
+  box-sizing: border-box;
+}
+.main-desc {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: 15pt;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-shadow: 0 2px 7px rgba(0,0,0,0.22);
+  margin-bottom: 16px;
+  margin-left: 0;           /* 왼쪽 여백 0 */
+  text-align: left;
+  width: 100%;              /* 부모폭과 맞추기 */
+  box-sizing: border-box;
+}
 /* 오른쪽 썸네일 스크롤 */
+/* 썸네일 스크롤 영역 */
 .thumb-scroll-area {
   position: absolute;
   top: 80px;
   right: 40px;
   width: 260px;
-  height: 540px;
+  height: 720px;     /* 길이 조정 (원하는 만큼!) */
   background: transparent;
   z-index: 3;
   overflow: hidden;
@@ -93,10 +118,32 @@ html, body {
   overflow-y: auto;
   width: 100%;
   height: 100%;
-  padding-right: 10px;
+  padding-right: 16px;    /* 스크롤바 공간 */
   scrollbar-width: thin;
-  scrollbar-color: #e2e2e2 #666;
+  scrollbar-color: #fff transparent;  /* Firefox */
 }
+
+/* 커스텀 스크롤바 (Chrome/Safari) */
+.thumb-list::-webkit-scrollbar {
+  width: 11px;
+  background: transparent;   /* 트랙 숨기기 */
+}
+.thumb-list::-webkit-scrollbar-track {
+  background: transparent;   /* 트랙 투명 */
+}
+.thumb-list::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 10px 0 rgba(30,30,30,0.13);
+  border: 2px solid rgba(0,0,0,0.09);  /* 바 외곽 라인 느낌 */
+}
+
+/* 마우스 오버시 바 색상 */
+.thumb-list::-webkit-scrollbar-thumb:hover {
+  background: #ededed;
+}
+
+/* 썸네일 카드 스타일은 기존과 동일하게 */
 .thumb-card {
   background: rgba(0,0,0,0.12);
   border-radius: 18px;
@@ -107,6 +154,7 @@ html, body {
   align-items: center;
   width: 100%;
 }
+
 .thumb-card img {
   width: 100%;
   border-radius: 12px;
@@ -120,15 +168,4 @@ html, body {
   letter-spacing: 0.04em;
   text-shadow: 0 2px 6px rgba(0,0,0,0.13);
   text-align: center;
-}
-
-/* 스크롤 바 스타일 */
-.thumb-list::-webkit-scrollbar {
-  width: 16px;
-  background: transparent;
-}
-.thumb-list::-webkit-scrollbar-thumb {
-  background: #bbb;
-  border-radius: 8px;
-  border: 3px solid #444;
 }
