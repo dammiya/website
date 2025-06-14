@@ -121,8 +121,10 @@ html, body {
 
 .thumb-card img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 100%;       /* 카드 높이 전체 사용 */
+  object-fit: cover;  /* 이미지가 카드 영역 꽉 채움 */
+  display: block;     /* 여백 제거 */
+  border-radius: 18px; /* 카드 모서리랑 이미지 모서리 동일하게 */
 }
 
 .thumb-caption {
