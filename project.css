@@ -1,108 +1,147 @@
+/* 기본 스타일 */
 html, body {
   height: 100%;
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
   overflow: hidden;
+  background: #111;
   font-family: 'Noto Sans KR', sans-serif;
 }
 
-/* 배경 */
 .bg-row {
   position: absolute;
   top: 0; left: 0;
-  width: 100vw;
+  width: 200vw;
   height: 100vh;
   display: flex;
   z-index: 0;
+  transition: transform 0.2s ease-out;
 }
+
 .bg-img {
   height: 100vh;
   width: auto;
   flex-shrink: 0;
   object-fit: cover;
 }
-.background-overlay {
+
+.background-overlay, .background-overlay2 {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
   background: rgba(0,0,0,0.7);
-  z-index: -1;
-}
-.background-overlay2 {
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.7);
-  z-index: 1;
 }
 
-/* 메인 타이틀 */
+.background-overlay {
+  z-index: -2;
+  opacity: 0.7;
+}
+
+.background-overlay2 {
+  z-index: 1;
+  opacity: 0.4;
+}
+
+/* 메인 텍스트 */
 .main-text {
   position: absolute;
-  left: 50%;
-  top: 140px;
-  transform: translateX(-50%);
-  z-index: 2;
-  text-align: center;
+  left: 90px; top: 140px;
+  z-index: 3;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  color: white;
 }
 .main-title-kor {
   font-weight: 700;
-  font-size: 42px;
+  font-size: 21pt;
   color: #ED4787;
-  margin-bottom: 10px;
+  margin: 0;
+  line-height: 1.4;
+  width: 100%;
+  text-align: left;
 }
 .main-title-eng {
   font-weight: 900;
-  font-size: 101px;
-  color: #fff;
-  margin-bottom: 20px;
+  font-size: 56pt;
+  margin: 0;
+  line-height: 1.5;
+  width: 100%;
+  text-align: left;
 }
 .main-desc {
-  font-weight: 400;
-  font-size: 30px;
-  color: #fff;
+  font-weight: 300;
+  font-size: 12pt;
+  margin: 0;
+  line-height: 1.5;
+  width: 100%;
+  text-align: left;
+  word-spacing: 2px;
 }
 
-/* 3D 스크롤 영역 */
+/* 카드 스크롤 영역 */
 .thumb-scroll-area {
   position: absolute;
   top: 50%;
   right: 40px;
-  width: 300px;
-  height: 500px;
+  width: 280px;
+  height: 540px;
   transform: translateY(-50%);
-  perspective: 1200px;
-  z-index: 3;
+  z-index: 4;
+  overflow: visible;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .thumb-list {
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  transform-style: preserve-3d;
   position: relative;
+  height: 540px;
+  width: 280px;
+  overflow: visible;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 1000px;
 }
+
 .thumb-card {
-  width: 100%;
+  position: absolute;
+  left: 0;
+  width: 280px;
   height: 140px;
-  margin: 20px 0;
-  border-radius: 15px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
-  transform-origin: center center;
+  background: #333;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border: 4px solid transparent;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.thumb-card.center {
+  border-color: #ED4787;
+  box-shadow: 0 4px 24px rgba(237, 71, 135, 0.8);
+}
+
 .thumb-card img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
+
 .thumb-caption {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
+  margin-top: 8px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 1.3rem;
   font-weight: 700;
-  font-size: 1.1rem;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }

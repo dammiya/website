@@ -447,17 +447,11 @@ body {
   display: block;
 }
 
-.thumb-title {
-  font-size: 0.95em;
-  padding: 6px 15px;
-  color: #ffe0f2;
-  font-weight: 600;
-  text-align: left;
-  width: 100%;
-  box-sizing: border-box;
-  height: auto;
-  min-height: 30px;
-  line-height: 1.4;
+.thumb-list {
+  position: relative;
+  height: 540px;
+  width: 280px;
+  overflow-y: auto;  /* 스크롤 바 나오게 설정 */
 }
 
 /* ─────────────────────────────────────
